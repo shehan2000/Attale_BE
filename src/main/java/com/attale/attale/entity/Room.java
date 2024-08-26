@@ -1,2 +1,4 @@
-package com.attale.attale.entity;public class Room {
+package com.attale.attale.entity;
+
+public class Room {
 }
