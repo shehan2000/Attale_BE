@@ -7,8 +7,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,8 +27,10 @@ public class User implements UserDetails {
     private String name;
     @NotBlank(message = "Phone Number is Required")
     private String phoneNumber;
+    @NotBlank(message="Password is required")
     private String password;
     private String role;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Booking> bookings=new ArrayList<>();
 
     @Override
