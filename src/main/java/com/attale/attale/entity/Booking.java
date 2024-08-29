@@ -19,7 +19,7 @@ public class Booking {
     @NotNull(message = "Check in Date is Required")
     private LocalDate checkInDate;
     @Future(message = "Check in Date must be in the Future")
-    private LocalDate checkOutData;
+    private LocalDate checkOutDate;
 
     @Min(value=1 ,message="Number of adults must be greater than 0")
     private int noOfAdults;
@@ -56,7 +56,7 @@ public class Booking {
         return "Booking{" +
                 "id=" + id +
                 ", checkInDate=" + checkInDate +
-                ", checkOutData=" + checkOutData +
+                ", checkOutData=" + checkOutDate +
                 ", noOfAdults=" + noOfAdults +
                 ", noOfChildren=" + noOfChildren +
                 ", totalNoOfGuests=" + totalNoOfGuests +
