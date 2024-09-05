@@ -23,7 +23,7 @@ public class Room {
     private BigDecimal roomPrice;
     private String roomPhotoUrl;
     private String roomDescription;
-    private List<Booking> bookings=new ArrayList<>();
+//    private List<Booking> bookings=new ArrayList<>();
 
 
 
