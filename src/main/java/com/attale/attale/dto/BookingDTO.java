@@ -12,6 +12,8 @@ import java.time.LocalDate;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BookingDTO {
 
+    private Long id;  // Add this field for the ID added
+
     private LocalDate checkInDate;
     private LocalDate checkOutData;
 
