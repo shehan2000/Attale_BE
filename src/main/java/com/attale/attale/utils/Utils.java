@@ -60,7 +60,7 @@ public class Utils {
         roomDTO.setId(room.getId());
         roomDTO.setRoomType(room.getRoomType());
         roomDTO.setRoomPrice(String.valueOf(room.getRoomPrice()));
-        roomDTO.setRoomPhotourl(roomDTO.getRoomPhotourl());
+        roomDTO.setRoomPhotourl(room.getRoomPhotoUrl());
 
         return roomDTO;
 
@@ -72,7 +72,8 @@ public class Utils {
         roomDTO.setId(room.getId());
         roomDTO.setRoomType(room.getRoomType());
         roomDTO.setRoomPrice(String.valueOf(room.getRoomPrice()));
-        roomDTO.setRoomPhotourl(roomDTO.getRoomPhotourl());
+        roomDTO.setRoomPhotourl(room.getRoomPhotoUrl());
+        roomDTO.setRoomDescription(room.getRoomDescription());
 
         if(room.getBookings() != null){
             roomDTO.setBookings(room.getBookings().stream().map(Utils::mapBookingEntityToBookingDTO).collect(Collectors.toList()));
@@ -92,13 +93,40 @@ public class Utils {
         userDTO.setRole(user.getRole());
 
         if (!user.getBookings().isEmpty()){
-            userDTO.setBookings(user.getBookings().stream().map(booking -> mapBookingEntityToBookingDTOPlusBookedRoom(booking,false)).collect(Collectors.toList()));
+            userDTO.setBookings(user.getBookings().stream().map(booking -> mapBookingEntityToBookingDTOPlusBookedRooms(booking,false)).collect(Collectors.toList()));
         }
 
 
 
         return userDTO;
 
+    }
+    public static BookingDTO mapBookingEntityToBookingDTOPlusBookedRooms(Booking booking,boolean mapUser){
+        BookingDTO bookingDTO = new BookingDTO();
+
+        bookingDTO.setId(booking.getId());
+        bookingDTO.setCheckInDate(booking.getCheckInDate());
+        bookingDTO.setCheckOutData(booking.getCheckOutDate());
+        bookingDTO.setNoOfAdults(booking.getNoOfAdults());
+        bookingDTO.setNoOfChildren(booking.getNoOfChildren());
+        bookingDTO.setTotalNoOfGuests(booking.getTotalNoOfGuests());
+        bookingDTO.setBookingConfirmationCode(booking.getBookingConfirmationCode());
+        if(mapUser){
+            bookingDTO.setUser(Utils.mapUserEntityToUserDTO(booking.getUser()));
+        }
+        if(booking.getRoom() != null){
+            RoomDTO roomDTO =new RoomDTO();
+
+
+            roomDTO.setId(booking.getRoom().getId());
+            roomDTO.setRoomType(booking.getRoom().getRoomType());
+            roomDTO.setRoomPrice(String.valueOf(booking.getRoom().getRoomPrice()));
+            roomDTO.setRoomPhotourl(booking.getRoom().getRoomPhotoUrl());
+            roomDTO.setRoomDescription(booking.getRoom().getRoomDescription());
+            bookingDTO.setRoom(roomDTO);
+
+
+        }
     }
 
 }
