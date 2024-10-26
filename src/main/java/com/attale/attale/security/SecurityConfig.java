@@ -1,5 +1,6 @@
 package com.attale.attale.security;
 
+import com.attale.attale.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Autowired
-    private CachingUserDetailsService cachingUserDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
 
     @Autowired
     private JWTAuthFilter jwtAuthFilter;
