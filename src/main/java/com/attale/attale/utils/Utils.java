@@ -8,6 +8,7 @@ import com.attale.attale.entity.Room;
 import com.attale.attale.entity.User;
 
 import java.security.SecureRandom;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Utils {
@@ -130,7 +131,15 @@ public class Utils {
         }
         return bookingDTO;
     }
-
+    public static List<UserDTO> mapUserListEntityToUserListDTO(List<User> userList){
+        return userList.stream().map(Utils::mapUserEntityToUserDTO).collect(Collectors.toList());
+    }
+    public static List<RoomDTO> mapRoomListEntityToRoomListDTO(List<Room> roomList){
+        return roomList.stream().map(Utils::mapRoomEntityToRoomDTO).collect(Collectors.toList());
+    }
+    public static List<BookingDTO> mapBookingListEntityToBookingListDTO(List<Booking> bookingList){
+        return bookingList.stream().map(Utils::mapBookingEntityToBookingDTO).collect(Collectors.toList());
+    }
 
 
 }
