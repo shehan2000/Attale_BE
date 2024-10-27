@@ -4,7 +4,7 @@ package com.attale.attale.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Data
