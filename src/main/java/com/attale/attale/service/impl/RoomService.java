@@ -10,6 +10,7 @@ import com.attale.attale.service.AwsS3Service;
 import com.attale.attale.service.interfac.IRoomService;
 import com.attale.attale.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -55,12 +56,27 @@ public class RoomService implements IRoomService {
 
     @Override
     public List<String> getAllRoomTypes() {
-        return null;
+        return roomRepository.findDistinctRoomTypes();
     }
 
     @Override
     public Response getAllRooms() {
-        return null;
+        Response response=new Response();
+        try{
+
+            List<Room> roomList=roomRepository.findAll(Sort.by(Sort.Direction.DESC,"id"));
+            List<RoomDTO> roomDTOList=Utils.mapRoomListEntityToRoomListDTO(roomList);
+            response.setStatusCode(200);
+            response.setMessage("successful");
+            response.setRoomList(roomDTOList);
+
+
+        }catch (Exception e){
+            response.setStatusCode(500);
+            response.setMessage("Error saving a room"+e.getMessage());
+
+        }
+        return response;
     }
 
     @Override
